@@ -86,6 +86,12 @@ require("lazy").setup({
       "L3MON4D3/LuaSnip",
     },
   },
+  
+  {
+  "nvim-telescope/telescope.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  }
+
 })
 
 -------------------------------------------------
@@ -132,4 +138,4 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
-
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
