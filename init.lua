@@ -1,11 +1,5 @@
--------------------------------------------------
--- LEADER (MUST BE FIRST)
--------------------------------------------------
 vim.g.mapleader = " "
 
--------------------------------------------------
--- BASIC UI SETTINGS
--------------------------------------------------
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
@@ -21,9 +15,6 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
--------------------------------------------------
--- LAZY.NVIM
--------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -35,12 +26,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--------------------------------------------------
--- PLUGINS
--------------------------------------------------
 require("lazy").setup({
 
-  -- DARK GREEN / FOREST THEME
   {
     "folke/tokyonight.nvim",
     priority = 1000,
@@ -57,10 +44,8 @@ require("lazy").setup({
     end,
   },
 
-  -- ICONS
   "nvim-tree/nvim-web-devicons",
 
-  -- CLEAN STATUSLINE (LIKE YOUR IMAGE)
   {
     "nvim-lualine/lualine.nvim",
     config = function()
@@ -75,10 +60,8 @@ require("lazy").setup({
     end,
   },
 
-  -- LSP
   "neovim/nvim-lspconfig",
 
-  -- AUTOCOMPLETE
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -94,9 +77,6 @@ require("lazy").setup({
 
 })
 
--------------------------------------------------
--- PYTHON LSP
--------------------------------------------------
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -104,9 +84,6 @@ lspconfig.pyright.setup({
   capabilities = capabilities,
 })
 
--------------------------------------------------
--- AUTOCOMPLETE SETUP
--------------------------------------------------
 local cmp = require("cmp")
 
 cmp.setup({
@@ -119,9 +96,6 @@ cmp.setup({
   },
 })
 
--------------------------------------------------
--- FORMAT ON SAVE
--------------------------------------------------
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.py",
   callback = function()
@@ -129,9 +103,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--------------------------------------------------
--- KEYMAPS
--------------------------------------------------
 vim.keymap.set("n", "<leader>r", ":!python %<CR>", { silent = true })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
